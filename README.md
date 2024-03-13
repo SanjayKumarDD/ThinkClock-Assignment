@@ -1,2 +1,2 @@
 # ThinkClock-Assignment
-Assignment ror 
+Assignment for ThinkClock
