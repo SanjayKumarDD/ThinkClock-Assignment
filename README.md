@@ -1,5 +1,6 @@
 # ThinkClock-Assignment
 Assignment for ThinkClock
+
 Note: 
 1.The python file need to be runned locally first for generating bode plot graph.
 2.For queick reference visit https://sanjaykumardd.github.io/ThinkClock-Assignment/. (Bode plot will not be visible, neet to run app.py locally, follow step-1 to step-3 )
