@@ -1,14 +1,18 @@
 # ThinkClock-Assignment
 Assignment for ThinkClock
+Note: 
+1.The python file need to be runned locally first for generating bode plot graph.
+2.For queick reference visit https://sanjaykumardd.github.io/ThinkClock-Assignment/. (Bode plot will not be visible, neet to run app.py locally, follow step-1 to step-3 )
 
 Step 1: clone the project using using git or download the project and unzip it.
 terminal command : git clone https://github.com/SanjayKumarDD/ThinkClock-Assignment.git
 ![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/28aad2fd-f1b8-4786-8219-3a0e59a9b4be)
 
-Step 2: Run app.py
+Step 2: Run app.py in local machine
 ![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/3c8fd64f-5c49-47d9-8c76-d236195d8ddc)
 
-Step 3: Open index.html in browser
+Step 3: Open index.html in browser after running app.py
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/d8ec0146-d905-4378-a71e-f1045daa9610)
 
 Functions :
 1. upload image to get the unique bar code and 10 digith id
