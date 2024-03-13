@@ -19,11 +19,11 @@ Functions :
 6. Battery Satat-of-health % can be calulated by entereing Rb(current), Rb(Max). Default values is assigned to it.
 7. A realtime SoH% battery bar is shown once SoH is calculated.
 8. Navigation bar can be used to move quicly.
-
-   ![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/73c9b0f1-7d43-447e-9700-c0667cdf1ad2)
-![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/259c7311-bdd3-4d2f-bad3-6e0084b13871)
-![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/8171c3e0-59ad-4c87-832e-688ba13e6877)
-![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/817cfba7-4768-4b3c-9b1f-95d891ca34ae)
-![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/81864f2a-bca2-4c2f-b441-7885bb93c8a0)
-![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/737b84e1-426a-4851-a5fd-a130c90a6664)
 ![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/8066740f-de32-47fd-92ef-72b89d985c4f)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/737b84e1-426a-4851-a5fd-a130c90a6664)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/81864f2a-bca2-4c2f-b441-7885bb93c8a0)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/817cfba7-4768-4b3c-9b1f-95d891ca34ae)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/8171c3e0-59ad-4c87-832e-688ba13e6877)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/259c7311-bdd3-4d2f-bad3-6e0084b13871)
+![image](https://github.com/SanjayKumarDD/ThinkClock-Assignment/assets/92215315/73c9b0f1-7d43-447e-9700-c0667cdf1ad2)
+
