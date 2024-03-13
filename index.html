@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="images/x-icon" href="logo.jpeg" />
+    <title>ThinkClock</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.3/JsBarcode.all.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="app.css" />
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li><a href="#page">Home</a></li>
+        <li><a href="#page1">Barcode</a></li>
+        <li><a href="#page2">Meta Data</a></li>
+        <li><a href="#page3">Electrical Data</a></li>
+        <li><a href="#page4">Bode Plot</a></li>
+        <li><a href="#page5">Circuit Model</a></li>
+        <li><a href="#page6">Battery SoH</a></li>
+        <li><a href="#footerend">About Us</a></li>
+      </ul>
+    </header>
+    <main>
+      <section id="page1">
+        <h1>BarCode Generator</h1>
+
+        <div>
+          <label for="imageInput"
+            >Upload the Cell image to get unique id and barcode </label
+          ><br />
+          <input type="file" id="imageInput" /><br />
+          <button id="butUpload" onclick="uploadImage()">Upload Image</button>
+          <br />
+          <div id="imageContainer" style="display: none">
+            <img id="uploadedImage" />
+          </div>
+          <p id="imageId"></p>
+        </div>
+
+        <div id="contentDiv" style="display: none">
+          <div class="content">
+            <!-- <input type="text" id="text"> -->
+            <svg id="barcode"></svg>
+            <!-- <button id="btn">Generate</button> -->
+          </div>
+        </div>
+      </section>
+
+      <section id="page2">
+        <h1>Meta Information</h1>
+
+        <div class="formContainer">
+          <form action="#">
+            <table>
+              <tr>
+                <th>Parameter</th>
+                <th>Value</th>
+              </tr>
+              <tr>
+                <td><label for="surname">Cell Condition:</label></td>
+                <td>
+                  <select id="selectOption" name="selectOption">
+                    <option value="option1" selected>Recycled</option>
+                    <option value="option2">New Cell</option>
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td><label for="othernames">Manufacturer: </label></td>
+                <td>
+                  <input
+                    type="text"
+                    id="manufacturer"
+                    name="manufacturer"
+                    placeholder="Enter cell manufacturer"
+                    value="Molicel"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="email">Model:</label></td>
+                <td>
+                  <input
+                    type="text"
+                    id="model"
+                    name="model"
+                    placeholder="Enter cell model"
+                    value="INR21700-P45B"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="phone">Type:</label></td>
+                <td>
+                  <input
+                    type="text"
+                    id="type"
+                    name="type"
+                    placeholder="Enter cell type"
+                    value="Li-ion"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="formfactor">Form factor:</label></td>
+                <td>
+                  <input
+                    type="text"
+                    id="formfactor"
+                    name="formfactor"
+                    placeholder="Enter cell form factor"
+                    value="Cylindrical 21700"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="mass">Mass(g):</label></td>
+                <td>
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="mass"
+                    name="mass"
+                    placeholder="Enter cell mass"
+                    value="70"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="hei">Height(mm):</label></td>
+                <td>
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="hei"
+                    name="hei"
+                    placeholder="Enter cell height"
+                    value="70.15"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="diameter">Diameter(mm):</label></td>
+                <td>
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="diameter"
+                    name="diameter"
+                    placeholder="Enter cell diameter"
+                    value="21.55"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td><label for="volume">Volume(cm&sup3):</label></td>
+                <td>
+                  <input
+                    type="number"
+                    step="0.01"
+                    id="volume"
+                    name="volume"
+                    placeholder="Enter cell volume"
+                    value="25.59"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" class="cell-with-button">
+                  <input type="submit" value="Save" />
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+        <!-- Add more content here -->
+      </section>
+
+      <section id="page3">
+        <h1>Electrical Parameters</h1>
+        <!-- Add more content here -->
+        <form action="#">
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+            </tr>
+            <tr>
+              <td>Nominal Voltage (V):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter nominal voltage"
+                  id="nominal_voltage"
+                  value="3.6"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Nominal energy (Wh):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter nominal energy"
+                  id="nominal_energy"
+                  value="16.2"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Nominal charge capacity (Ah):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter nominal charge capacity"
+                  id="nominal_charge_capacity"
+                  value="4.5"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Voltage Range (V):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter voltage range"
+                  id="voltage_range"
+                  value="2.5"
+                  min="2.5"
+                  max="4.2"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Current (continuous A)</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter continuous current"
+                  id="current_continuous"
+                  value="8.61"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Current (peak A):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter peek current"
+                  id="current_peak"
+                  value="17.5"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Power (continuous W):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter continuous power"
+                  id="power_continuous"
+                  value="25.6"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Peak (peak W):</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter peak value"
+                  id="power_peak"
+                  value="50.0"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Energy Density (Gravimetric Wh/kg)</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter gravimetric energy density"
+                  id="energy_density_gravimetric"
+                  value="154"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Energy Density (Volumetric Wh/l)</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter volumetric energy density"
+                  id="energy_density_volumetric"
+                  value="375"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Power Density (Gravimetric W/kg)</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter gravimetric power density"
+                  id="power_density_gravimetric"
+                  value="837"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>Power Density (Volumetric kW/l)</td>
+              <td>
+                <input
+                  type="number"
+                  placeholder="Enter volumetric power density"
+                  id="power_density_volumetric"
+                  value="2.04"
+                  step="0.01"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" class="cell-with-button">
+                <!--       <button>Save</button> -->
+                <input type="submit" value="Save" />
+              </td>
+            </tr>
+          </table>
+        </form>
+      </section>
+
+      <section id="page4">
+        <h1>Circuit Diagram and Bode Plot</h1>
+
+        <form id="csv-upload-form">
+          <label for="csv-file"
+            >Upload csv file to get circuity image and bode plot</label
+          >
+          <input id="csv-file" type="file" id="csv-file" accept=".csv" />
+          <button type="button" id="submit-button">Upload</button>
+        </form>
+        <div class="image-container">
+          <!-- <button id="my-button">Click me</button> -->
+          <!-- <img src="circuit.png" /> -->
+          <img id="my-image" src="circuit.png" style="display: none" />
+        </div>
+      </section>
+      <section id="bodePlot" style="display: none; height: 600px"></section>
+      <section id="page5">
+        <h1>Circuit Model</h1>
+
+        <!-- <div class="image-container">
+          <img id="my-image" src="circuit.png" style="display: none" />
+        </div> -->
+
+        <form action="#">
+          <table>
+            <tr>
+              <th>Parameter</th>
+              <th>Value</th>
+              <th>Explanation</th>
+              <th>
+                Visual Indicator (Show visually the current value compared to
+                min and max values, assume min-max values of each parameter)
+              </th>
+            </tr>
+            <tr>
+              <td>Rb</td>
+              <td><input type="text" placeholder="Enter Rb " name="Rb" /></td>
+              <td>Electrolyte resistance</td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter electrolyte resistance"
+                  name="Rb_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>R_SEI</td>
+              <td>
+                <input type="text" placeholder="Enter R_SEI" name="R_SEI" />
+              </td>
+              <td>Resistance due to SEI layer</td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Entert Resistanc due to SEI layer"
+                  name="R_SEI_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>CPE_SEI</td>
+              <td>
+                <input type="text" placeholder="Enter CPE_SEI" name="CPE_SEI" />
+              </td>
+              <td>Capacitance due to SEI layer</td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter CPE_SEI value"
+                  name="CPE_SEI_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>R_CT</td>
+              <td>
+                <input type="text" placeholder="Enter R_CT" name="R_CT" />
+              </td>
+              <td>
+                Charge-transfer resistancethat models the voltage drop over the
+                electrode–electrolite interface due to aload
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter R_CT value"
+                  name="R_CT_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>CPE_DL</td>
+              <td>
+                <input type="text" placeholder="Enter CPE_DL" name="CPE_DL" />
+              </td>
+              <td>
+                Double-layer capacitance that models the effect of charges
+                building up in the electrolyte at the electrode surface
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter CPE_DL value"
+                  name="CPE_DL_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>W_Warburg</td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter W_Warburg"
+                  name="W_Warburg"
+                />
+              </td>
+              <td>
+                Frequency-dependent Warburg impedancemodels diffusion of lithium
+                ions in the electrodes
+              </td>
+              <td>
+                <input
+                  type="text"
+                  placeholder="Enter W_Warburg value"
+                  name="W_Warburg_visual"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4" class="cell-with-button">
+                <input type="submit" value="Save" />
+              </td>
+              <!-- <td colspan="3"></td>              <td><input type="submit" name="Save"></button></td> -->
+            </tr>
+          </table>
+        </form>
+      </section>
+      <section id="page6">
+        <h1>Battery State-of-the-Health %</h1>
+
+        <div id="page-wrap">
+          <label for="rbCurrent"
+            >Enter the current battery capacity (Rb(current)):
+          </label>
+          <input
+            type="number"
+            placeholder="Enter Rb(Curent)"
+            id="rbCurrent"
+            min="0"
+            value="10"
+          />
+
+          <label for="rbMax"
+            >Enter the maximum battery capacity (Rb(Max)):
+          </label>
+          <input
+            type="number"
+            placeholder="Enter Rb(MAX)"
+            id="rbMax"
+            min="0"
+            value="80"
+          />
+          <!-- <p>Cli</p> -->
+          <!-- <input id="bttsub" onclick="calculateSoH()" type="submit" value="Calculate SoH" /> -->
+          <img style="height: 50px; width: 25px" src="batteryimg.png" />
+          <button id="bttsub" onclick="calculateSoH()">
+            Click to Calculate SoH
+          </button>
+
+          <p id="result"></p>
+        </div>
+
+        <div id="page-wrap">
+          <div class="meter">
+            <span style="width: 0%"></span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer id="footerend">
+      <p>Created by Sanjay Kumar D. ThinkClock Battery Lab</p>
+    </footer>
+    <script src="app.js"></script>
+  </body>
+</html>
